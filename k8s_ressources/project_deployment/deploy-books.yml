@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-deployment
+  labels:
+    app: books
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: books
+  template:
+    metadata:
+      labels:
+        app: books
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+          value: http://registry-svc:8761/eureka/
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql:3306/bookservice
+        name: books
+        image: europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/book-service:94fd5aa
+        ports:
+        - containerPort: 9001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-svc
+spec:
+  ports:
+  - port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: books

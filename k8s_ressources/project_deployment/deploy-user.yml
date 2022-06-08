@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  labels:
+    app: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+          value: http://registry-svc:8761/eureka/
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:mysql://mysql:3306/userservice
+        name: user
+        image: europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/userservice:51c3596
+        ports:
+        - containerPort: 9002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-svc
+spec:
+  ports:
+  - port: 9002
+    protocol: TCP
+    targetPort: 9002
+  selector:
+    app: user

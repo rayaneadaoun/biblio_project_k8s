@@ -1,0 +1,10 @@
+INSERT INTO book VALUES (1, "children", "Garfield");
+INSERT INTO book VALUES (2, "teen", "Coupe du monde 98");
+INSERT INTO book VALUES (3, "teen", "Les secrets des pyramides");
+INSERT INTO book VALUES (4, "adult", "Tueur à gages");
+INSERT INTO book VALUES (5, "teen", "Harry Potter T.1");
+INSERT INTO book VALUES (6, "teen", "Le Seigneur des anneaux T.1");
+INSERT INTO book VALUES (7, "adult", "Les misérables");
+INSERT INTO book VALUES (8, "children", "Tom et Jerry");
+INSERT INTO book VALUES (9, "adult", "Les misérables");
+INSERT INTO book VALUES (10, "children", "Tom et Jerry");

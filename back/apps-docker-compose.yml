@@ -1,0 +1,64 @@
+version: '3.6'
+
+services:
+  app-books:
+      container_name: app-books
+      build: ./book-service/
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/bookservice
+        environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://app-register:8761/eureka/
+      depends_on:
+        - db
+      ports:
+        - "9001:9001"
+  app-user:
+      container_name: app-user
+      build: ./userservice/
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/userservice
+        environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://app-register:8761/eureka/
+      depends_on:
+        - db
+      ports:
+        - "9002:9002"
+  app-comments:
+      container_name: app-comments
+      build: ./comment-service/
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/commentservice
+        environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://app-register:8761/eureka/
+      depends_on:
+        - db
+      ports:
+        - "9003:9003"
+  front:
+      container_name: front
+      build: ../front/
+      depends_on:
+        - app-user
+        - app-books
+      ports:
+        - "3000:3000"
+  db:
+      container_name: db
+      image: mysql/mysql-server
+      volumes:
+        - ./init:/docker-entrypoint-initdb.d
+      restart: always
+      ports:
+        - "3306:3306"
+#      networks:
+#        - gateway
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: bookservice
+        MYSQL_USER: bibliouser
+        MYSQL_PASSWORD: biblio123
+      healthcheck:
+        test: '/usr/bin/mysql -h 127.0.0.1 -P 3306 -u bibliouser --password=biblio123 --execute "SHOW DATABASES;"'
+        interval: 2s
+        timeout: 20s
+        retries: 5

@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  app-register:
+      container_name: app-registry
+      build: ./service-registry/
+      ports:
+        - "8761:8761"
+  app-gateway:
+      container_name: app-gateway
+      build: ./service-gateway/
+      environment:
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://app-register:8761/eureka/
+      ports:
+        - "9191:9191"
+      depends_on:
+        - app-register

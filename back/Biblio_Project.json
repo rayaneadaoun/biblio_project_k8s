@@ -1,0 +1,798 @@
+{
+	"info": {
+		"_postman_id": "8e721da2-491a-4291-b058-765a1c7e331b",
+		"name": "Projet_Biblio_Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New User auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"rayane\",\n        \"username\": \"rayane\",\n        \"email\": \"rayane@gmail.com\",\n        \"age\": 24,\n        \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/api/user/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"user",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "rayane",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of all Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYXNzeWxMZU0iLCJyb2xlcyI6W10sImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuNTc6OTAwMi9hcGkvbG9naW4iLCJleHAiOjE2NTQ2OTY5NDl9.ojp8RgXQyZp949m9Wdj2mlYdRUCpcOKpDp46TQZBPm4",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTQkIiLCJpc3MiOiJodHRwOi8vMTAuMjA5LjExNC4xMTI6OTAwMi9hcGkvbG9naW4iLCJleHAiOjE2NTQ1OTAzNjh9.5gkuvjykkJNAGl3ya_N2JHYltSyufvNOqECSz6ETpVY",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/api/token/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All users with list of userIds ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnw6lnw6kiLCJyb2xlcyI6W10sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJleHAiOjE2NTQyODg2MzB9.F-XKOX5cebcdUuexeLQhdLRQjWqH-9GpEhRs3OP7oK4",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:9191/api/userIds/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"userIds",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by userID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTQkIiLCJyb2xlcyI6W10sImlzcyI6Imh0dHA6Ly8xMC4yMDkuMTE0LjExMjo5MDAyL2FwaS9sb2dpbiIsImV4cCI6MTY1NDU5MTc5NH0.B6MmQbkCLUfJV_7TzagMk27uKQD6iCpkYqT3YkmlPHE",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/api/id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user with userId",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJNYXNzeWxMZU0iLCJyb2xlcyI6W10sImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuNTc6OTAwMi9hcGkvbG9naW4iLCJleHAiOjE2NTQ2OTcwOTV9.IsXbED8F_Y_lEcsbXiFtIBfL89dpVf099LsManIB2Lo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/api/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get number of book by userId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJndGVzdCIsInJvbGVzIjpbXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MDAyL2FwaS9sb2dpbiIsImV4cCI6MTY1NDI5NTk4N30.0ezJF_9mnnMbkaiisb1AE0u8GaLYMtSaVSwnMsQHLsM",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/api/number-of-books/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"number-of-books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Increase number of book for user((ONLY FOR ADMIN))",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/api/incr-number-of-books/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"incr-number-of-books",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decrease number of books for user (ONLY FOR ADMIN)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/api/decr-number-of-books/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"decr-number-of-books",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add to history of user (Only for testing)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0YyIsInJvbGVzIjpbXSwiaXNzIjoiaHR0cDovLzE5Mi4xNjguMS41Nzo5MDAyL2FwaS9sb2dpbiIsImV4cCI6MTY1NDUzMTI1N30.8VN8M46dgCHGVcHpBG64ETyVdssIbrIEiFQrDi7k_ZA",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/api/add-to-history/7/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								"add-to-history",
+								"7",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXNzeWwiLCJyb2xlcyI6W10sImlzcyI6Imh0dHA6Ly8xOTIuMTY4LjEuNTc6OTAwMi9hcGkvbG9naW4iLCJleHAiOjE2NTQ1MzA0NzR9.sakijGmGL7nf8Yzwb4-dnp7b7y4pHWYc2B3Et3ntdmw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"userId\": 6,\n        \"name\": \"Will Smithaa\",\n        \"username\": \"will\",\n        \"email\": \"WS@gmail.com\",\n        \"age\": 28,\n        \"password\": \"$2a$10$ygZqmDUHX0zDWAy9rwLbQ.MIV3UmC8M5hediXlyp..06siHDAAHE6\",\n        \"numberOfBooks\": 0,\n        \"roles\": [\n            {\n                \"roleId\": 2,\n                \"name\": \"Role_ADMIN\"\n            }\n        ],\n        \"booksHistory\": [\n            {\n                \"bookId\": 5,\n                \"name\": \"livre a 1h du mat numéro 2\",\n                \"category\": \"adult\",\n                \"usersIds\": null\n            }\n        ],\n        \"ageCategorie\": \"adult\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/api/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "All books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcm5vbGQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjU0Mjg2MDU5fQ.BpZ2ddHbDyAdwmZcgoc8XL4463Mwwp4y_VfFZLBnOGw",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"testBookPrintMethod\",\n    \"category\": \"children\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": 1,\n    \"name\": \"Garfield\",\n    \"category\": \"teen\",\n    \"userIds\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/books/delete/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"delete",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book to user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcm5vbGQiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiZXhwIjoxNjU0Mjg2MDU5fQ.BpZ2ddHbDyAdwmZcgoc8XL4463Mwwp4y_VfFZLBnOGw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/books/id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User return Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/books/return/id/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"return",
+								"id",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users for Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/books/id/1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"id",
+								"1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books for User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/books/userId/1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"userId",
+								"1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of books returned for a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/books/userId/1/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"userId",
+								"1",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users (Unnothaurized for the moment)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/books/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"books",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "All Comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": 1,\n    \"name\": \"avec modif\",\n    \"category\": \"adulte\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment with user and book Id(Only if user already return this book)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"content\": \"pas mal mal\",\n        \"grade\": 2.0,\n        \"userId\": 1,\n        \"bookId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete your comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/comments/delete/9/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"comments",
+								"delete",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comments For Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/comments/bookId/1/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"comments",
+								"bookId",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify your comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": 1,\n    \"name\": \"jean onche \",\n    \"email\": \"jean-onche@test.fr\",\n    \"age\": 40\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment by Comment Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/comments/id/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"comments",
+								"id",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

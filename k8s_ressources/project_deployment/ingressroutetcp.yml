@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: ingressroutetcptes
+
+spec:
+  entryPoints:                  # [1]
+    - web
+    - websecure
+  routes:                       # [2]
+  - match: HostSNI(`*`)         # [3]
+    services:                   # [7]
+    - name: front-svc                # [8]
+      port: 3000                # [9]

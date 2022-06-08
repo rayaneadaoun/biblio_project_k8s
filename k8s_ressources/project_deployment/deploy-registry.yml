@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry-deployment
+  labels:
+    app: registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+      - name: registry
+        image: europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/service-registry:latest
+        ports:
+        - containerPort: 8761
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-svc
+spec:
+  ports:
+  - port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: registry
