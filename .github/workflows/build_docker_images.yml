@@ -1,0 +1,48 @@
+name: Build and Push SpringBoot Image to Google Cloud Platform (GCP)
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-push-gcr:
+    name: Build and Push to GCP
+    runs-on: ubuntu-latest
+    env:
+      SERVICE_FOLDER: "book-service comment-service service-gateway service-registry userservice"
+      PROJECT_ID: rayane-devops-test21
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Auth on GCP with service account key 
+      uses: google-github-actions/auth@v0.4.1
+      with:
+        credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+      
+    - name: Set up Google Cloud SDK 
+      uses: google-github-actions/setup-gcloud@v0.3.0
+        
+    - name: Build Docker Image
+      run: |-
+        docker build -t front:latest ./front/                                   
+        for elem in $SERVICE_FOLDER ;do docker build -t $elem:latest ./back/$elem/  ;done 
+        
+
+    - name: Configure Docker Client
+      run: |-
+        gcloud auth configure-docker --quiet
+        gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+    
+    - name: Push Docker Image to Artifact Registry
+      run: |-
+        GIT_TAG=$(git rev-parse --short "$GITHUB_SHA")
+        for elem in $SERVICE_FOLDER ;do
+          docker tag $elem:latest europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/$elem:latest
+          docker tag $elem:latest europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/$elem:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/$elem:latest
+          docker push europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/$elem:$GIT_TAG
+        done
+        docker tag front:latest europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/front:latest  
+        docker tag front:latest europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/front:$GIT_TAG
+        docker push europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/front:latest
+        docker push europe-west1-docker.pkg.dev/rayane-devops-test21/biblio-registry/front:$GIT_TAG
